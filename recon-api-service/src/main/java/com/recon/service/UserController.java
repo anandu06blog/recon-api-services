@@ -2,6 +2,7 @@
 
 package com.recon.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,4 +41,17 @@ public class UserController {
         users.add(name);
         return "User '" + name + "' created successfully.";
     }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/db")
+    public List<UserEntity> get2Users() {
+        return userRepository.findAll();
+    }
+
+//    @PostMapping
+//    public User addUser(@RequestBody User user) {
+//        return userRepository.save(user);
+//    }
 }
